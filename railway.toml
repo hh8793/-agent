@@ -1,0 +1,4 @@
+# Railway 部署配置
+[deploy]
+startCommand = "cd server && node dist/index.js"
+buildCommand = "npm install && npm run build"

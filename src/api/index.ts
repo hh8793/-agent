@@ -1,5 +1,6 @@
 // ============ 后端 API 客户端 ============
-const API_BASE = 'http://localhost:3001/api'
+// 开发环境用 localhost:3001，生产环境用相对路径（同源）
+const API_BASE = import.meta.env.DEV ? 'http://localhost:3001/api' : '/api'
 
 async function request<T = any>(url: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${API_BASE}${url}`, {
