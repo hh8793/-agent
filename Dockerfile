@@ -14,8 +14,8 @@ RUN npm ci || npm install
 COPY src/ ./src/
 COPY public/ ./public/
 
-# 构建前端
-RUN npm run build
+# 只构建前端（不执行 server 的 build）
+RUN npx vite build
 
 # 安装后端依赖
 COPY server/package.json server/package-lock.json* ./server/
@@ -23,7 +23,7 @@ RUN cd server && npm ci || npm install
 
 # 复制后端源码并构建
 COPY server/ ./server/
-RUN cd server && npm run build
+RUN cd server && npx tsc
 
 # 运行阶段
 FROM node:20-slim AS runner
